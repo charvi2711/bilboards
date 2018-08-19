@@ -9,6 +9,19 @@ header("location: http://localhost/roopray/index.php/user_authentication/user_lo
 <title>Login Form</title>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Open+Sans+Condensed:300|Raleway' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	input[type=submit]{
+width: 100%;
+background-color:#FFBC00;
+color: white;
+border: 2px solid #FFCB00;
+padding: 10px;
+font-size:20px;
+cursor:pointer;
+border-radius: 5px;
+margin-bottom: 15px;
+}
+</style>
 </head>
 <body>
 <?php
