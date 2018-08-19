@@ -10,7 +10,20 @@ class company_controller extends CI_Controller {
         }
 
         public function index(){
-                
+                if(isset($this->session->userdata['loggedin'])){
+                    if($this->session->userdata['loggedin']['user_type'] == 0){
+                        redirect('/user_authentication/logout');
+                    }else if($this->session->userdata['loggedin']['user_type'] == 1){
+                        $data2['page_to_load'] = 'admins_company_info';
+                        $this->load->view('template', $data2);
+                    }
+                }else {
+                    $this->load->view('login_form');
+                }
+        }
+
+        public function get_companies(){
+                return json_encode($this->company_modal->get_companies());
         }
 
 }
