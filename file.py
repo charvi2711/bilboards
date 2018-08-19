@@ -20,7 +20,11 @@ def upload_file2():
       #message = Markup('<a href="http://192.168.43.19/hackinfi/index.php/user_authentication>Click Here</a>')
       #flash(message)
       #return render_template('http://192.168.43.19/hackinfi/index.php/user_authentication')
-      return '<h1>The image and the loction sent by tells the billboard to be '+result+'</h1><button id="close">close</button><script>document.getElementById("close").onclick = function(){ window.close();}</script>'
+      if result == 'legal':
+          return '<h1>The image and the loction sent by tells the billboard to be '+result+'</h1><button id="close">close</button><script>document.getElementById("close").onclick = function(){ window.close();}</script>'
+      else:
+          result = ', '.join(result)
+          return '<h1>These billboards are illegal - '+result+'</h1><button id="close">close</button><script>document.getElementById("close").onclick = function(){ window.close();}</script>'
       		
 if __name__ == '__main__':
    app.run(host='0.0.0.0', debug = False)
