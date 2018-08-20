@@ -13,8 +13,8 @@
 				<form enctype="multipart/form-data" action="http://192.168.43.30:5000/uploader" method = "post" id="myForm" target="hiddenframe">
 					IMMEDIATE CHECK
 					<input type="file" name="file" size="20" />
-					<input type="hidden" name="longitude" id="longitude">
 					<input type="hidden" name="latitude" id = "latitude">
+					<input type="hidden" name="longitude" id="longitude">
 					<input type="hidden" name="date" id="date">
 
 					<br /><br />

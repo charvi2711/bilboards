@@ -21,17 +21,18 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$.ajax({
-        url : "<?php echo site_url('company_comtroller/get_companies')?>/",
-        type: "POST",
-        dataType: "JSON",
-        success: function(data)
-        {
-            console.log(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error get data from ajax');
-        }
-    });
+            url : "<?php echo site_url('company_controller/get_companies')?>",
+            type: "POST",
+            success: function(data)
+            {
+                console.log(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+                console.log(jqXHR);
+                console.log(errorThrown);
+            }
+        });
 	});
 </script>

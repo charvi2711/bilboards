@@ -8,7 +8,8 @@
 	    <thead>
 	        <tr>
 	            <th>Billboard</th>
-	            <th>Action</th>
+	            <th>Status</th>
+                <th>Action</th>
 	        </tr>
 	    </thead>
 	    <tbody>
@@ -16,7 +17,8 @@
 	    <tfoot>
 	        <tr>
 	            <th>Billborad</th>
-              <th>Action</th>
+                <th>Status</th>
+                <th>Action</th>
 	        </tr>
 	    </tfoot>
 	</table>
@@ -53,5 +55,27 @@
      
     function reload_table(){
         table.ajax.reload(null,false); //reload datatable ajax 
+    }
+
+    function delete_person(id){
+        if(confirm('Are you sure delete this data?'))
+        {
+            // ajax delete data to database
+            $.ajax({
+                url : "<?php echo site_url('complaint_list/ajax_delete')?>/"+id,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    //if success reload ajax table
+                    reload_table();
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error deleting data');
+                }
+            });
+     
+        }
     }
 </script>

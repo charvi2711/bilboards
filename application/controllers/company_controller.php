@@ -23,7 +23,8 @@ class company_controller extends CI_Controller {
         }
 
         public function get_companies(){
-                return json_encode($this->company_modal->get_companies());
+            $r = $this->company_modal->get_companies();
+            return $r;
         }
 
 }

@@ -10,8 +10,16 @@ class company_modal extends CI_Model {
     }
 
     public function get_companies(){
-    	$query = $this->db->query("SELECT * FROM companies");
-    	return $query->result();
-    }
+    	$array = array();
+			$query = $this->db->query("SELECT id, name FROM companies");
+			$i = 0 ;
+			foreach ($query->result() as $row)
+			{
+				$array[$i]['name']  =  $row->name;
+				$array[$i]['id'] = $row->id;
+				$i++;
+	    }
+	    return $array;
+	  }
  
 }

@@ -39,6 +39,8 @@ class complaint_list extends CI_Controller {
                         }else{
                             $row[] = 'already processed';
                         }
+
+                        $row[] = '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                         
                      
                         $data[] = $row;
@@ -71,6 +73,8 @@ class complaint_list extends CI_Controller {
                     }else{
                         $row[] = 'already processed';
                     }
+
+                    $row[] = '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                     
                     $data[] = $row;
                 }
@@ -84,6 +88,12 @@ class complaint_list extends CI_Controller {
                 //output to json format
                 echo json_encode($output);
         }
+
+    public function ajax_delete($id)
+    {
+        $this->person->delete_by_id($id);
+        echo json_encode(array("status" => TRUE));
+    }
 
 }
 ?>
