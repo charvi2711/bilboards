@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, Markup, jsonify
 from werkzeug import secure_filename
 import test
+from datetime import datetime
 app = Flask(__name__)
 
 @app.route('/upload')
@@ -12,11 +13,13 @@ def upload_file():
 def upload_file2():
    if request.method == 'POST':
       f = request.files['file']
-      long = request.form['longitude']
       lat = request.form['latitude']
+      long = request.form['longitude']
+      date = request.form['date']
+      Date = datetime.strptime(date, '%d/%m/%Y')
       ext = f.filename.split(sep='.')
       f.save(secure_filename('img.'+ext[-1]))
-      result = test.predict(lat, long)
+      result = test.predict(float(lat), float(long), Date)
       #message = Markup('<a href="http://192.168.43.19/hackinfi/index.php/user_authentication>Click Here</a>')
       #flash(message)
       #return render_template('http://192.168.43.19/hackinfi/index.php/user_authentication')

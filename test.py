@@ -1,7 +1,7 @@
 from ctypes import *
-import math
 import random
 from math import sin, cos, sqrt, atan2, radians
+from datetime import datetime
 
 def sample(probs):
     s = sum(probs)
@@ -162,14 +162,14 @@ def checkDistance(lat, lon, llat, llon):
     return distance
 
 
-def checkLegality(name, lat, lon, values):
+def checkLegality(name, lat, lon, date, values):
     print('ok')
     lname = []
     for j in range(len(name)):
         x = 0
         print(name[j])
         for i in range(len(values)):
-            if values[i][0] == name[j] and checkDistance(lat, lon, values[i][1], values[i][2]) <= 0.05:
+            if values[i][0] == name[j] and checkDistance(lat, lon, values[i][1], values[i][2]) <= 0.05 and date <= datetime.strptime(values[i][3], '%d/%m/%Y'):
                 x = 1
                 break
         if x == 0:
@@ -178,7 +178,7 @@ def checkLegality(name, lat, lon, values):
 
 
 
-def predict(lat, long):
+def predict(lat, long, date):
     name = []
     net = load_net(b"/home/ron/Git Repositories/HackWithInfy14/logo.cfg", b"/home/ron/Git Repositories/HackWithInfy14/logo.weights", 0)
     meta = load_meta(b"coco.data")
@@ -187,9 +187,9 @@ def predict(lat, long):
     print(name, 'hi')
 
 
-    values = [["google", 34.4554, 45.67676], ["dhl", 67.334, 23.7877]]
+    values = [["google", 34.4554, 45.67676, '19/08/2018'], ["dhl", 67.334, 23.7877, '21/08/2018']]
     
-    illegal_names = checkLegality(name, lat, long, values)
+    illegal_names = checkLegality(name, lat, long, date, values)
     
     if len(illegal_names) == 0:
         return 'legal'
